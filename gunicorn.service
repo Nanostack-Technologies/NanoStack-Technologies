@@ -1,0 +1,16 @@
+[unit]
+Description=Gunicorn daemon for NanoStack Technologies
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/var/www/NanoStack-Technologies
+ExecStart=/var/www/NanoStack-Technologies/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/var/www/NanoStack-Technologies/nanostack.sock \
+          NanoStack_Technologies.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

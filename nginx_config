@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name 72.62.247.49;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    
+    location /static/ {
+        root /var/www/NanoStack-Technologies;
+    }
+
+    location /media/ {
+        root /var/www/NanoStack-Technologies;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/NanoStack-Technologies/nanostack.sock;
+    }
+}
