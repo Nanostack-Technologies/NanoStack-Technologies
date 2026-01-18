@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="padding-top: 120px; padding-bottom: 80px;">
+    <div style="background: var(--card-bg); border-radius: 20px; overflow: hidden; border: var(--glass-border);">
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="width: 100%; height: 400px; object-fit: cover;">
+        {% endif %}
+        
+        <div style="padding: 40px;">
+            <div style="color: var(--accent-color); font-weight: 600; margin-bottom: 10px;">{{ post.created_at|date:"M d, Y" }} | By {{ post.author }}</div>
+            <h1 style="margin-bottom: 20px; font-size: 2.5rem;">{{ post.title }}</h1>
+            
+            <div style="color: var(--text-light); line-height: 1.8; font-size: 1.1rem; margin-bottom: 40px;">
+                {{ post.content|safe }}
+            </div>
+            
+            <a href="{% url 'blog' %}" class="btn btn-outline">Back to Blog</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

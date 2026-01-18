@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-header" style="margin-top: 100px;">
+    <h1>Get in Touch</h1>
+    <p>Let's discuss your next big idea.</p>
+</section>
+
+<div class="container" style="padding-bottom: 80px;">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p style="margin-bottom: 30px; color: var(--text-muted);">Reach out to us for any queries or project discussions.</p>
+            
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4 style="margin-bottom: 5px;">Location</h4>
+                    <p style="color: var(--text-muted);">Available Globally (Remote First)</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4 style="margin-bottom: 5px;">Email</h4>
+                    <p style="color: var(--text-muted);">contact@nanostacktechnologies.com</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4 style="margin-bottom: 5px;">Phone</h4>
+                    <p style="color: var(--text-muted);">+91 9979412610<br>+91 7203045055</p>
+                </div>
+            </div>
+
+             <div class="info-item">
+                <i class="fab fa-linkedin"></i>
+                <div>
+                    <h4 style="margin-bottom: 5px;">Socials</h4>
+                    <p style="color: var(--text-muted);">Follow us on LinkedIn</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; text-align: center;">
+                <img src="{% static 'images/card.png' %}" alt="Business Card" style="max-width: 100%; border-radius: 10px; border: var(--glass-border);">
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h2>Send Message</h2>
+            {% if messages %}
+                {% for message in messages %}
+                <div style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="phone" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

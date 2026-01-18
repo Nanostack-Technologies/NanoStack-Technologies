@@ -1,0 +1,27 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}Message Details{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <strong>Subject: {{ msg.subject }}</strong>
+        <span class="text-muted">{{ msg.created_at }}</span>
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label class="fw-bold">From:</label>
+            <p>{{ msg.name }} &lt;{{ msg.email }}&gt; <br> Phone: {{ msg.phone }}</p>
+        </div>
+        <hr>
+        <div class="mb-3">
+            <label class="fw-bold">Message:</label>
+            <p style="white-space: pre-wrap;">{{ msg.message }}</p>
+        </div>
+        <div class="mt-4">
+            <a href="mailto:{{ msg.email }}" class="btn btn-primary"><i class="fas fa-reply"></i> Reply</a>
+            <a href="{% url 'admin_messages_list' %}" class="btn btn-secondary ms-2">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-header" style="margin-top: 100px;">
+    <h1>Join Our Team</h1>
+    <p>Build the future with NanoStack.</p>
+</section>
+
+<div class="container" style="padding-bottom: 80px;">
+    {% if jobs %}
+        <div style="display: grid; gap: 30px;">
+            {% for job in jobs %}
+            <div style="background: var(--card-bg); padding: 30px; border-radius: 20px; border: var(--glass-border);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <h3>{{ job.title }}</h3>
+                    <span style="background: var(--accent-color); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;">{{ job.type }}</span>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 10px;"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</p>
+                <div style="color: var(--text-muted); margin-bottom: 20px;">
+                    {{ job.description|linebreaks }}
+                </div>
+                 <h4 style="margin-bottom: 10px;">Requirements:</h4>
+                 <div style="color: var(--text-muted); margin-bottom: 20px;">
+                    {{ job.requirements|linebreaks }}
+                 </div>
+                <a href="mailto:careers@nanostacktechnologies.com?subject=Application for {{ job.title }}" class="btn btn-primary">Apply Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 50px; background: var(--card-bg); border-radius: 20px;">
+            <h3>No Openings Currently</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">We are not hiring at the moment, but feel free to send your resume to careers@nanostacktechnologies.com for future consideration.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

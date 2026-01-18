@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-header" style="margin-top: 100px;">
+    <h1>Our Projects</h1>
+    <p>Success stories powered by NanoStack.</p>
+</section>
+
+<div class="container" style="padding-bottom: 80px;">
+    <div class="projects-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-img">
+            {% else %}
+            <div class="project-img" style="background: var(--secondary-color); display: flex; align-items: center; justify-content: center;">No Image</div>
+            {% endif %}
+            <div class="project-body">
+                <div class="project-meta">{{ project.tech_stack }}</div>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description|truncatewords:20 }}</p>
+                <a href="{% url 'project_detail' project.pk %}" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        {% empty %}
+        <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted);">
+            <p>No projects to display yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

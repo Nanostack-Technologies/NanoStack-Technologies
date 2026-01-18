@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-header" style="margin-top: 100px;">
+    <h1>Our Blog</h1>
+    <p>Insights, updates, and tech trends.</p>
+</section>
+
+<div class="container" style="padding-bottom: 80px;">
+    <div class="projects-grid">
+        {% for post in posts %}
+        <div class="project-card">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="project-img">
+            {% else %}
+            <div class="project-img" style="background: var(--secondary-color); display: flex; align-items: center; justify-content: center;">No Image</div>
+            {% endif %}
+            <div class="project-body">
+                <div class="project-meta">{{ post.created_at|date:"M d, Y" }} | By {{ post.author }}</div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content|truncatewords:20 }}</p>
+                <a href="{% url 'blog_detail' post.pk %}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        {% empty %}
+         <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted);">
+            <p>No blog posts found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

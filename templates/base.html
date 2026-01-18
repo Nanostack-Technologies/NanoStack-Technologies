@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NanoStack Technologies | Best Web Development & Automation Agency{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block description %}NanoStack Technologies is a leading web and automation agency specializing in Custom Software, Django, React, N8N Automations, and AI solutions. Transform your business today.{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}NanoStack Technologies, Web Development, Automation, Django, React, Python, Custom Software, App Development, N8N, WhatsApp Automation, Pavan Mehta, Nakul Talsaniya{% endblock %}">
+    <meta name="author" content="NanoStack Technologies">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{% block og_title %}{{ self.title }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ self.description }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% static 'images/card.png' %}{% endblock %}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta property="twitter:title" content="{% block twitter_title %}{{ self.title }}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}{{ self.description }}{% endblock %}">
+    <meta property="twitter:image" content="{% block twitter_image %}{% static 'images/card.png' %}{% endblock %}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "NanoStack Technologies",
+      "url": "https://nanostacktechnologies.com",
+      "logo": "https://nanostacktechnologies.com{% static 'images/logo.png' %}",
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Pavan Mehta"
+        },
+        {
+          "@type": "Person",
+          "name": "Nakul Talsaniya"
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/nanostack-technologies",
+        "https://www.instagram.com/nanostack_technologies"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9979412610",
+        "contactType": "customer service",
+        "areaServed": "Global",
+        "availableLanguage": "English"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="{% url 'home' %}" class="logo">
+                <img src="{% static 'images/logo.png' %}" alt="NanoStack Logo">
+                <span>NanoStack Technologies</span>
+            </a>
+            
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+                <li><a href="{% url 'projects' %}" class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">Projects</a></li>
+                <li><a href="{% url 'blog' %}" class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog</a></li>
+                <li><a href="{% url 'career' %}" class="{% if request.resolver_match.url_name == 'career' %}active{% endif %}">Career</a></li>
+                <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section brand">
+                <img src="{% static 'images/logo.png' %}" alt="NanoStack Logo" class="footer-logo">
+                <p>Transforming businesses with cutting-edge web and automation solutions.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'projects' %}">Our Projects</a></li>
+                    <li><a href="{% url 'career' %}">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section services">
+                <h3>Services</h3>
+                <ul>
+                    <li>Web Development</li>
+                    <li>App Development</li>
+                    <li>Automation</li>
+                    <li>Custom Software</li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <h3>Contact</h3>
+                <p><i class="fas fa-phone"></i> +91 9979412610</p>
+                <p><i class="fas fa-phone"></i> +91 7203045055</p>
+                <p><i class="fas fa-envelope"></i> info.nanostack@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {% now "Y" %} NanoStack Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Sticky Navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // Smooth Scroll is default in CSS html { scroll-behavior: smooth; }
+    </script>
+</body>
+</html>

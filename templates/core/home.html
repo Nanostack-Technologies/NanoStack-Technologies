@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Transforming <br> <span class="highlight">Visions</span> into <br> <span class="highlight">Digital Reality</span></h1>
+        <p>Harness the power of cutting-edge technology to automate processes, enhance productivity, and drive digital transformation for your organization.</p>
+        <div class="hero-btns">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Start Your Journey</a>
+            <a href="{% url 'about' %}" class="btn btn-outline">Learn More</a>
+        </div>
+
+        <div class="hero-images-grid">
+            <div class="hero-img-item" style="transform: translateY(40px);">
+                <div style="width: 100%; height: 100%; background: #0a0a0a; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 1px solid #222;">
+                    <i class="fas fa-server" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;"></i>
+                    <span style="color: #666;">Scalable Tech</span>
+                </div>
+            </div>
+            <div class="hero-img-item">
+                 <div style="width: 100%; height: 100%; background: #0a0a0a; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 1px solid #222;">
+                    <i class="fas fa-layer-group" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;"></i>
+                    <span style="color: #666;">Design System</span>
+                </div>
+            </div>
+            <div class="hero-img-item" style="transform: translateY(60px);">
+                <div style="width: 100%; height: 100%; background: #0a0a0a; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 1px solid #222;">
+                    <i class="fas fa-code-branch" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;"></i>
+                    <span style="color: #666;">Clean Code</span>
+                </div>
+            </div>
+            <div class="hero-img-item" style="transform: translateY(20px);">
+                 <div style="width: 100%; height: 100%; background: #0a0a0a; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 1px solid #222;">
+                    <i class="fas fa-robot" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;"></i>
+                    <span style="color: #666;">Smart Automation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Stack Ticker -->
+<div class="tech-stack-section">
+    <div class="container section-header">
+        <h2>Technologies We Master</h2>
+    </div>
+    <div class="tech-ticker-wrap">
+        <div class="tech-ticker">
+            <!-- Double the content for seamless infinite scroll -->
+            <div class="tech-item"><i class="fab fa-html5" style="color: #E34F26;"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt" style="color: #1572B6;"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fab fa-js" style="color: #F7DF1E;"></i><span>JavaScript</span></div>
+            <div class="tech-item"><i class="fab fa-react" style="color: #61DAFB;"></i><span>React</span></div>
+            <div class="tech-item"><i class="fab fa-python" style="color: #3776AB;"></i><span>Python</span></div>
+            <div class="tech-item"><i class="fab fa-node" style="color: #339933;"></i><span>Node.js</span></div>
+            <div class="tech-item"><i class="fas fa-server" style="color: #44B78B;"></i><span>Django</span></div>
+            <div class="tech-item"><i class="fab fa-bootstrap" style="color: #7952B3;"></i><span>Bootstrap</span></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #47A248;"></i><span>MongoDB</span></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #336791;"></i><span>PostgreSQL</span></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #00758F;"></i><span>MySQL</span></div>
+            <div class="tech-item"><i class="fab fa-figma" style="color: #F24E1E;"></i><span>Figma</span></div>
+            <div class="tech-item"><i class="fas fa-bolt" style="color: #FF6D5A;"></i><span>N8N</span></div>
+            
+            <!-- Repeat -->
+            <div class="tech-item"><i class="fab fa-html5" style="color: #E34F26;"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt" style="color: #1572B6;"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fab fa-js" style="color: #F7DF1E;"></i><span>JavaScript</span></div>
+            <div class="tech-item"><i class="fab fa-react" style="color: #61DAFB;"></i><span>React</span></div>
+            <div class="tech-item"><i class="fab fa-python" style="color: #3776AB;"></i><span>Python</span></div>
+            <div class="tech-item"><i class="fab fa-node" style="color: #339933;"></i><span>Node.js</span></div>
+            <div class="tech-item"><i class="fas fa-server" style="color: #44B78B;"></i><span>Django</span></div>
+            <div class="tech-item"><i class="fab fa-bootstrap" style="color: #7952B3;"></i><span>Bootstrap</span></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #47A248;"></i><span>MongoDB</span></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #336791;"></i><span>PostgreSQL</span></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #00758F;"></i><span>MySQL</span></div>
+            <div class="tech-item"><i class="fab fa-figma" style="color: #F24E1E;"></i><span>Figma</span></div>
+            <div class="tech-item"><i class="fas fa-bolt" style="color: #FF6D5A;"></i><span>N8N</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<section id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Expertise</h2>
+            <p>End-to-end solutions tailored to your unique business needs.</p>
+        </div>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <i class="{{ service.icon }} service-icon"></i>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Founders Section -->
+<section class="founders" style="background: var(--secondary-color);">
+    <div class="container">
+        <div class="section-header">
+            <h2>Meet the Visionaries</h2>
+        </div>
+        <div class="founders-grid" style="display: flex; justify-content: center; gap: 50px; flex-wrap: wrap;">
+            <!-- Founder 1 -->
+            <div class="founder-card service-card" style="max-width: 350px;">
+                <!-- Placeholder for Founder Image -->
+                 <div style="width: 100px; height: 100px; background: var(--accent-color); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">PM</div>
+                <h3>Pavan Mehta</h3>
+                <p style="color: var(--accent-color); font-weight: 500;">Co-Founder</p>
+                <div class="social-links" style="justify-content: center; margin-top: 15px;">
+                     <a href="#"><i class="fab fa-linkedin"></i></a>
+                     <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+             <!-- Founder 2 -->
+            <div class="founder-card service-card" style="max-width: 350px;">
+                 <!-- Placeholder for Founder Image -->
+                 <div style="width: 100px; height: 100px; background: var(--accent-color); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">NT</div>
+                <h3>Nakul Talsaniya</h3>
+                <p style="color: var(--accent-color); font-weight: 500;">Co-Founder</p>
+                <div class="social-links" style="justify-content: center; margin-top: 15px;">
+                     <a href="#"><i class="fab fa-linkedin"></i></a>
+                     <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Projects -->
+{% if recent_projects %}
+<section id="portfolio">
+    <div class="container">
+        <div class="section-header">
+            <h2>Recent Works</h2>
+            <p>A glimpse into our successful deliveries.</p>
+        </div>
+        <div class="projects-grid">
+            {% for project in recent_projects %}
+            <div class="project-card">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-img">
+                {% else %}
+                <div class="project-img" style="background: var(--secondary-color); display: flex; align-items: center; justify-content: center;">No Image</div>
+                {% endif %}
+                <div class="project-body">
+                    <div class="project-meta">{{ project.tech_stack }}</div>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description|truncatewords:20 }}</p>
+                    <a href="{% url 'project_detail' project.pk %}" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="{% url 'projects' %}" class="btn btn-outline">View All Projects</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

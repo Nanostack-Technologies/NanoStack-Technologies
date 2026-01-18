@@ -1,0 +1,86 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}Overview{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Projects -->
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="m-0 text-muted">Projects</h5>
+                <i class="fas fa-briefcase text-primary fa-2x"></i>
+            </div>
+            <h2>{{ counts.projects }}</h2>
+        </div>
+    </div>
+    <!-- Blogs -->
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="m-0 text-muted">Blogs</h5>
+                <i class="fas fa-newspaper text-success fa-2x"></i>
+            </div>
+            <h2>{{ counts.blogs }}</h2>
+        </div>
+    </div>
+    <!-- Services -->
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="m-0 text-muted">Services</h5>
+                <i class="fas fa-cogs text-warning fa-2x"></i>
+            </div>
+            <h2>{{ counts.services }}</h2>
+        </div>
+    </div>
+    <!-- Messages -->
+    <div class="col-md-3">
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="m-0 text-muted">Messages</h5>
+                <i class="fas fa-envelope text-danger fa-2x"></i>
+            </div>
+            <h2>{{ counts.messages }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Recent Messages
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover m-0">
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if recent_messages %}
+                            {% for msg in recent_messages %}
+                            <tr>
+                                <td>{{ msg.name }}</td>
+                                <td>{{ msg.subject|truncatechars:30 }}</td>
+                                <td>{{ msg.created_at|date:"M d" }}</td>
+                                <td><a href="{% url 'admin_message_detail' msg.id %}" class="btn btn-sm btn-light">View</a></td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center p-3">No new messages</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

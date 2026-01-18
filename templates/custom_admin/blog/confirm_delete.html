@@ -1,0 +1,21 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}Delete Blog Post{% endblock %}
+
+{% block content %}
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white">
+        Confirm Deletion
+    </div>
+    <div class="card-body">
+        <p>Are you sure you want to delete the post "<strong>{{ object.title }}</strong>"?</p>
+        <p class="text-danger">This action cannot be undone.</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'admin_blogs_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="padding-top: 120px; padding-bottom: 80px;">
+    <div style="background: var(--card-bg); border-radius: 20px; overflow: hidden; border: var(--glass-border);">
+        {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width: 100%; height: 400px; object-fit: cover;">
+        {% endif %}
+        
+        <div style="padding: 40px;">
+            <div style="color: var(--accent-color); font-weight: 600; margin-bottom: 10px;">{{ project.tech_stack }}</div>
+            <h1 style="margin-bottom: 20px; font-size: 2.5rem;">{{ project.title }}</h1>
+            
+            <div style="color: var(--text-light); line-height: 1.8; font-size: 1.1rem; margin-bottom: 40px;">
+                {{ project.description|safe }}
+            </div>
+            
+            {% if project.link %}
+            <a href="{{ project.link }}" target="_blank" class="btn btn-primary">Visit Live Site <i class="fas fa-external-link-alt"></i></a>
+            {% endif %}
+            
+            <a href="{% url 'projects' %}" class="btn btn-outline">Back to Projects</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

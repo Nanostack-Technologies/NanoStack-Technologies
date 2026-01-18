@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /custom_admin/
+
+Sitemap: https://nanostacktechnologies.com/sitemap.xml

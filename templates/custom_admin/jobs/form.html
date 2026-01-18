@@ -1,0 +1,18 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}{% if form.instance.pk %}Edit Job Opening{% else %}Add Job Opening{% endif %}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Save Job</button>
+                <a href="{% url 'admin_jobs_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
