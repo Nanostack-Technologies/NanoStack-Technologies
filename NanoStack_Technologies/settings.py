@@ -23,10 +23,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f+vag1x-+6yg2)rq=)wbr=a9ig82(t=el=3jgvwwwbj0vy+gcv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['nanostacktechnologies.com', 'nanoadmin.nanostacktechnologies.com', 'www.nanostacktechnologies.com', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://nanostacktechnologies.com', 'https://nanoadmin.nanostacktechnologies.com', 'https://www.nanostacktechnologies.com']
+
+# Security Settings
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+X_FRAME_OPTIONS = 'DENY'
 
 
 # Application definition
@@ -53,6 +65,7 @@ CKEDITOR_CONFIGS = {
 }
 
 MIDDLEWARE = [
+    'NanoStack_Technologies.middleware.SubdomainRoutingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -127,8 +140,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Trust Nginx to handle SSL
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Login URL
+LOGIN_URL = 'admin_login'
