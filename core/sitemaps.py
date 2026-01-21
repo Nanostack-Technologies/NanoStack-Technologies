@@ -23,7 +23,7 @@ class ProjectSitemap(Sitemap):
         return obj.created_at
 
     def location(self, obj):
-        return reverse('project_detail', args=[obj.pk])
+        return reverse('project_detail', args=[obj.slug])
 
 class BlogSitemap(Sitemap):
     changefreq = 'weekly'
@@ -36,4 +36,4 @@ class BlogSitemap(Sitemap):
         return obj.created_at
     
     def location(self, obj):
-        return reverse('blog_detail', args=[obj.pk])
+        return reverse('blog_detail', args=[obj.slug])

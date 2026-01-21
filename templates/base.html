@@ -11,6 +11,7 @@
     <meta name="keywords" content="{% block keywords %}NanoStack Technologies, Web Development, Automation, Django, React, Python, Custom Software, App Development, N8N, WhatsApp Automation, Pavan Mehta, Nakul Talsaniya{% endblock %}">
     <meta name="author" content="NanoStack Technologies">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -38,6 +39,8 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/Favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/Favicon/android-chrome-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'images/Favicon/android-chrome-512x512.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/Favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/Favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'images/Favicon/site.webmanifest' %}">

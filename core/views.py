@@ -29,8 +29,8 @@ def projects(request):
         'seo_keywords': 'NanoStack Portfolio, Case Studies, Web Projects, App Development Examples'
     })
 
-def project_detail(request, pk):
-    project = get_object_or_404(Project, pk=pk)
+def project_detail(request, slug):
+    project = get_object_or_404(Project, slug=slug)
     return render(request, 'core/project_detail.html', {
         'project': project,
         'seo_title': f"{project.title} | Case Study by NanoStack",
@@ -47,8 +47,8 @@ def blog(request):
         'seo_keywords': 'Tech Blog, Web Dev Blog, Python Tutorials, Business Automation Tips'
     })
 
-def blog_detail(request, pk):
-    post = get_object_or_404(BlogPost, pk=pk)
+def blog_detail(request, slug):
+    post = get_object_or_404(BlogPost, slug=slug)
     return render(request, 'core/blog_detail.html', {
         'post': post,
         'seo_title': f"{post.title} | NanoStack Blog",

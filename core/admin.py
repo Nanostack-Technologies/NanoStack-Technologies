@@ -6,12 +6,14 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'tech_stack', 'created_at')
     search_fields = ('title', 'tech_stack', 'description')
     list_filter = ('created_at',)
+    prepopulated_fields = {'slug': ('title',)}
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'created_at')
     search_fields = ('title', 'content')
     list_filter = ('created_at', 'author')
+    prepopulated_fields = {'slug': ('title',)}
 
 @admin.register(JobOpening)
 class JobOpeningAdmin(admin.ModelAdmin):

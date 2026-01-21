@@ -566,6 +566,23 @@ footer {
         font-size: 2.5rem;
     }
 
+    /* Fix for buttons touching in mobile */
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-btns .btn {
+        width: 80%; /* Good width for mobile touch */
+        max-width: 300px;
+        display: flex;
+        justify-content: center;
+        margin-left: 0; /* Override margin-left from desktop styles */
+    }
+
     .contact-container,
     .footer-content {
         grid-template-columns: 1fr;

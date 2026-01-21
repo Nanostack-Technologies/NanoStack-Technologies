@@ -20,7 +20,7 @@
                 <div class="project-meta">{{ project.tech_stack }}</div>
                 <h3>{{ project.title }}</h3>
                 <p>{{ project.description|truncatewords:20 }}</p>
-                <a href="{% url 'project_detail' project.pk %}" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
+                <a href="{% url 'project_detail' project.slug %}" class="read-more">View Case Study <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
         {% empty %}
