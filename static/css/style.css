@@ -653,27 +653,33 @@ footer {
 
     /* Detail View Mobile */
     .detail-container {
-        padding-top: 85px;
-        /* Further reduced padding top */
-        padding-bottom: 40px;
+        padding-top: 80px;
+        padding-bottom: 30px;
         padding-left: 15px;
         padding-right: 15px;
     }
 
+    .detail-card {
+        border-radius: 15px;
+    }
+
     .detail-image {
-        height: auto;
-        max-height: 300px;
-        /* Limit height on mobile but maintain aspect */
+        height: 200px;
+        /* Fixed smaller height for mobile */
+        max-height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
     }
 
     .detail-content {
         padding: 20px;
-        /* Reduced padding */
     }
 
     .detail-title {
-        font-size: 1.8rem;
-        /* Smaller title font */
+        font-size: 1.5rem;
+        /* Smaller, more compact title */
+        margin-bottom: 15px;
     }
 
     .detail-text {
