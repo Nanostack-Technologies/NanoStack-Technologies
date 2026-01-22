@@ -483,8 +483,10 @@ textarea.form-control {
 
 .detail-image {
     width: 100%;
-    height: 400px;
+    height: auto;
+    max-height: 500px;
     object-fit: cover;
+    display: block;
 }
 
 .detail-content {
@@ -651,14 +653,17 @@ footer {
 
     /* Detail View Mobile */
     .detail-container {
-        padding-top: 100px;
-        /* Reduced padding top */
+        padding-top: 85px;
+        /* Further reduced padding top */
         padding-bottom: 40px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .detail-image {
-        height: 250px;
-        /* Smaller image height for mobile */
+        height: auto;
+        max-height: 300px;
+        /* Limit height on mobile but maintain aspect */
     }
 
     .detail-content {
