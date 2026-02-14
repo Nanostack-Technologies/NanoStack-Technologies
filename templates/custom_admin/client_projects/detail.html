@@ -1,0 +1,86 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}Project Detail: {{ project.project_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Project Info -->
+    <div class="col-md-6 mb-4">
+        <div class="card p-3 h-100">
+            <h5 class="card-title">Project Details</h5>
+            <hr>
+            <p><strong>Client:</strong> <a href="{% url 'admin_client_detail' project.client.pk %}">{{ project.client.name }}</a></p>
+            <p><strong>Status:</strong> 
+                {% if project.status == 'Completed' %}
+                    <span class="badge bg-success">Completed</span>
+                {% elif project.status == 'In Progress' %}
+                    <span class="badge bg-primary">In Progress</span>
+                {% elif project.status == 'On Hold' %}
+                    <span class="badge bg-warning text-dark">On Hold</span>
+                {% else %}
+                    <span class="badge bg-secondary">{{ project.status }}</span>
+                {% endif %}
+            </p>
+            <p><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
+            <p><strong>Payment Method:</strong> {{ project.payment_method }}</p>
+            <p><strong>Description:</strong> {{ project.description|linebreaksbr }}</p>
+            <div class="mt-3">
+                <a href="{% url 'admin_client_project_edit' project.pk %}" class="btn btn-warning text-white">Edit</a>
+                <a href="{% url 'admin_client_project_delete' project.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial -->
+    <div class="col-md-6 mb-4">
+        <div class="card p-3 h-100">
+            <h5 class="card-title">Financials</h5>
+            <hr>
+            <div class="d-flex justify-content-between mb-2">
+                <span>Total Bill:</span>
+                <span class="fw-bold">₹{{ project.total_bill|floatformat:0 }}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+                <span>Amount Paid:</span>
+                <span class="text-success fw-bold">₹{{ project.amount_paid|floatformat:0 }}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+                <span>Balance Due:</span>
+                <span class="text-warning fw-bold">₹{{ project.balance_due|floatformat:0 }}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+                <span>Expenses:</span>
+                <span class="text-danger fw-bold">₹{{ project.expenses|floatformat:0 }}</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <span>Profit / Loss:</span>
+                <span class="{% if project.is_profitable %}text-success{% else %}text-danger{% endif %} fw-bold">₹{{ project.profit_or_loss|floatformat:0 }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dates -->
+    <div class="col-md-12">
+        <div class="card p-3">
+            <h5 class="card-title">Timeline & Notes</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>Start Date:</strong> {{ project.start_date|default:"Not set" }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>End Date:</strong> {{ project.end_date|default:"Not set" }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Delivered Date:</strong> {{ project.delivered_date|default:"Not set" }}</p>
+                </div>
+            </div>
+            <div class="mt-3">
+                <strong>Notes:</strong>
+                <p class="text-muted">{{ project.notes|default:"No notes available."|linebreaksbr }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

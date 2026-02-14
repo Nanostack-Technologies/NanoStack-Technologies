@@ -134,6 +134,15 @@
             <li><a href="{% url 'admin_messages_list' %}" class="{% if 'messages' in request.path %}active{% endif %}">
                 <i class="fas fa-envelope"></i> Messages
             </a></li>
+            <li><a href="{% url 'admin_clients_list' %}" class="{% if 'clients' in request.path and 'client-projects' not in request.path %}active{% endif %}">
+                <i class="fas fa-users"></i> Clients
+            </a></li>
+            <li><a href="{% url 'admin_client_projects_list' %}" class="{% if 'client-projects' in request.path %}active{% endif %}">
+                <i class="fas fa-chart-pie"></i> Client Projects
+            </a></li>
+            <li><a href="{% url 'admin_analytics' %}" class="{% if 'analytics' in request.path %}active{% endif %}">
+                <i class="fas fa-chart-line"></i> Analytics
+            </a></li>
             <li style="margin-top: 50px;"><a href="{% url 'admin_logout' %}" class="text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a></li>

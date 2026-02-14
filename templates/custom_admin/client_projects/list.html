@@ -1,0 +1,66 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}Client Projects{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>All Client Projects</span>
+        <a href="{% url 'admin_client_project_add' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Client</th>
+                        <th>Status</th>
+                        <th>Tech Stack</th>
+                        <th>Total Bill</th>
+                        <th>Paid</th>
+                        <th>Profit/Loss</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'admin_client_project_detail' project.pk %}" class="fw-bold text-decoration-none">{{ project.project_name }}</a>
+                            <div class="small text-muted">{{ project.created_at|date:"M d, Y" }}</div>
+                        </td>
+                        <td>{{ project.client.name }}</td>
+                        <td>
+                            {% if project.status == 'Completed' %}
+                                <span class="badge bg-success">Completed</span>
+                            {% elif project.status == 'In Progress' %}
+                                <span class="badge bg-primary">In Progress</span>
+                            {% elif project.status == 'On Hold' %}
+                                <span class="badge bg-warning text-dark">On Hold</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ project.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ project.tech_stack|truncatechars:20 }}</td>
+                        <td>₹{{ project.total_bill|floatformat:0 }}</td>
+                        <td class="text-success">₹{{ project.amount_paid|floatformat:0 }}</td>
+                        <td class="{% if project.profit_or_loss >= 0 %}text-success{% else %}text-danger{% endif %} fw-bold">
+                            ₹{{ project.profit_or_loss|floatformat:0 }}
+                        </td>
+                        <td>
+                            <a href="{% url 'admin_client_project_edit' project.pk %}" class="btn btn-sm btn-warning text-white"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'admin_client_project_delete' project.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center py-4">No client projects found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

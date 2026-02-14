@@ -1,6 +1,6 @@
 from django import forms
 from ckeditor.widgets import CKEditorWidget
-from core.models import Project, BlogPost, JobOpening, Service
+from core.models import Project, BlogPost, JobOpening, Service, Client, ClientProject
 
 class BootstrapFormMixin:
     def __init__(self, *args, **kwargs):
@@ -29,3 +29,19 @@ class ServiceForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Service
         fields = '__all__'
+
+class ClientForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['name', 'email', 'phone', 'company', 'address', 'notes']
+
+class ClientProjectForm(BootstrapFormMixin, forms.ModelForm):
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
+    delivered_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
+
+    class Meta:
+        model = ClientProject
+        fields = ['client', 'project_name', 'status', 'tech_stack', 'description',
+                  'total_bill', 'amount_paid', 'payment_method', 'expenses',
+                  'start_date', 'end_date', 'delivered_date', 'notes']

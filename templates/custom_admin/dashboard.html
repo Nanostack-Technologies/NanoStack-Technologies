@@ -5,8 +5,8 @@
 {% block content %}
 <div class="row">
     <!-- Projects -->
-    <div class="col-md-3">
-        <div class="card p-3">
+    <div class="col-md-3 mb-4">
+        <div class="card p-3 h-100">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="m-0 text-muted">Projects</h5>
                 <i class="fas fa-briefcase text-primary fa-2x"></i>
@@ -15,8 +15,8 @@
         </div>
     </div>
     <!-- Blogs -->
-    <div class="col-md-3">
-        <div class="card p-3">
+    <div class="col-md-3 mb-4">
+        <div class="card p-3 h-100">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="m-0 text-muted">Blogs</h5>
                 <i class="fas fa-newspaper text-success fa-2x"></i>
@@ -25,8 +25,8 @@
         </div>
     </div>
     <!-- Services -->
-    <div class="col-md-3">
-        <div class="card p-3">
+    <div class="col-md-3 mb-4">
+        <div class="card p-3 h-100">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="m-0 text-muted">Services</h5>
                 <i class="fas fa-cogs text-warning fa-2x"></i>
@@ -35,8 +35,8 @@
         </div>
     </div>
     <!-- Messages -->
-    <div class="col-md-3">
-        <div class="card p-3">
+    <div class="col-md-3 mb-4">
+        <div class="card p-3 h-100">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="m-0 text-muted">Messages</h5>
                 <i class="fas fa-envelope text-danger fa-2x"></i>
@@ -44,7 +44,55 @@
             <h2>{{ counts.messages }}</h2>
         </div>
     </div>
+    <!-- Clients -->
+    <div class="col-md-3 mb-4">
+        <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="m-0 text-muted">Clients</h5>
+                <i class="fas fa-users text-info fa-2x"></i>
+            </div>
+            <h2>{{ counts.clients }}</h2>
+        </div>
+    </div>
+    <!-- CRM Projects -->
+    <div class="col-md-3 mb-4">
+        <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="m-0 text-muted">CRM Projects</h5>
+                <i class="fas fa-tasks text-secondary fa-2x"></i>
+            </div>
+            <h2>{{ counts.client_projects }}</h2>
+        </div>
+    </div>
+    <!-- Revenue -->
+    <div class="col-md-6 mb-4">
+        <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="m-0 text-muted">Financial Overview</h5>
+                <i class="fas fa-chart-line text-success fa-2x"></i>
+            </div>
+            <div class="row text-center mt-2">
+                <div class="col-3">
+                    <small>Total Bill</small>
+                    <h5 class="text-primary">₹{{ total_revenue|floatformat:0 }}</h5>
+                </div>
+                <div class="col-3">
+                    <small>Paid</small>
+                    <h5 class="text-success">₹{{ total_paid|floatformat:0 }}</h5>
+                </div>
+                <div class="col-3">
+                    <small>Expenses</small>
+                    <h5 class="text-danger">₹{{ total_expenses|floatformat:0 }}</h5>
+                </div>
+                <div class="col-3">
+                    <small>Profit</small>
+                    <h5 class="{% if total_profit >= 0 %}text-success{% else %}text-danger{% endif %}">₹{{ total_profit|floatformat:0 }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <div class="row mt-4">
     <div class="col-md-6">

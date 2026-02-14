@@ -1,0 +1,49 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}Clients{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>All Clients</span>
+        <a href="{% url 'admin_client_add' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Projects</th>
+                        <th>Total Revenue</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'admin_client_detail' client.pk %}" class="fw-bold text-decoration-none">{{ client.name }}</a>
+                            <div class="small text-muted">{{ client.email }}</div>
+                        </td>
+                        <td>{{ client.company }}</td>
+                        <td>{{ client.total_projects }}</td>
+                        <td>₹{{ client.total_revenue|floatformat:0 }}</td>
+                        <td>
+                            <a href="{% url 'admin_client_detail' client.pk %}" class="btn btn-sm btn-info text-white"><i class="fas fa-eye"></i></a>
+                            <a href="{% url 'admin_client_edit' client.pk %}" class="btn btn-sm btn-warning text-white"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'admin_client_delete' client.pk %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4">No clients found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

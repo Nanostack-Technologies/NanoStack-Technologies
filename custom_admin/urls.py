@@ -34,4 +34,22 @@ urlpatterns = [
     path('messages/', views.messages_list, name='admin_messages_list'),
     path('messages/<int:pk>/', views.message_detail, name='admin_message_detail'),
     path('messages/<int:pk>/delete/', views.message_delete, name='admin_message_delete'),
+
+    # Clients
+    path('clients/', views.clients_list, name='admin_clients_list'),
+    path('clients/add/', views.ClientCreateView.as_view(), name='admin_client_add'),
+    path('clients/<int:pk>/', views.client_detail, name='admin_client_detail'),
+    path('clients/<int:pk>/edit/', views.ClientUpdateView.as_view(), name='admin_client_edit'),
+    path('clients/<int:pk>/delete/', views.ClientDeleteView.as_view(), name='admin_client_delete'),
+
+    # Client Projects
+    path('client-projects/', views.client_projects_list, name='admin_client_projects_list'),
+    path('client-projects/add/', views.ClientProjectCreateView.as_view(), name='admin_client_project_add'),
+    path('client-projects/<int:pk>/', views.client_project_detail, name='admin_client_project_detail'),
+    path('client-projects/<int:pk>/edit/', views.ClientProjectUpdateView.as_view(), name='admin_client_project_edit'),
+    path('client-projects/<int:pk>/delete/', views.ClientProjectDeleteView.as_view(), name='admin_client_project_delete'),
+
+    # Analytics
+    path('analytics/', views.analytics_page, name='admin_analytics'),
+    path('analytics/data/', views.analytics_data, name='admin_analytics_data'),
 ]

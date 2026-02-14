@@ -1,0 +1,18 @@
+{% extends 'custom_admin/base_admin.html' %}
+
+{% block header %}{% if form.instance.pk %}Edit Client{% else %}Add Client{% endif %}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Save Client</button>
+                <a href="{% url 'admin_clients_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
