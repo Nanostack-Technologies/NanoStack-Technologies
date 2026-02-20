@@ -85,5 +85,44 @@ def contact(request):
         'seo_keywords': 'Contact NanoStack, Hire Developers, Web Dev Quote, Automation Consulatation'
     })
 
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+
+@csrf_exempt
+def contact_api(request):
+    if request.method == 'POST':
+        # Handle both JSON and Form Data
+        if request.content_type == 'application/json':
+            try:
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({'error': 'Invalid JSON'}, status=400)
+        else:
+            data = request.POST
+
+        name = data.get('name')
+        email = data.get('email')
+        phone = data.get('phone', '')
+        subject = data.get('subject')
+        message = data.get('message')
+
+        if not all([name, email, subject, message]):
+            return JsonResponse({'error': 'Missing required fields'}, status=400)
+
+        ContactMessage.objects.create(
+            name=name, email=email, phone=phone, subject=subject, message=message
+        )
+        
+        # If standard form submit, verify if they want redirect or JSON
+        if request.content_type != 'application/json' and not request.headers.get('x-requested-with') == 'XMLHttpRequest':
+             # Optional: Redirect to a 'thank you' page if it's a direct HTML form post
+             # For now, returning JSON is safer for an "API"
+             pass
+
+        return JsonResponse({'message': 'Message sent successfully'}, status=201)
+        
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
