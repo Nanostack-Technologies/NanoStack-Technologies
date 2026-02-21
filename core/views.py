@@ -65,16 +65,73 @@ def career(request):
         'seo_keywords': 'Tech Jobs, Python Developers Hiring, Remote Jobs, Software Engineer Careers'
     })
 
+import re
+
+def is_spam(data):
+    """
+    Service to check if a contact message is likely spam.
+    """
+    email = data.get('email', '').lower()
+    name = data.get('name', '').lower()
+    subject = data.get('subject', '').lower()
+    message = data.get('message', '').lower()
+    honeypot = data.get('website', '') # Honeypot field name
+
+    # 1. Honeypot check: If the hidden 'website' field is filled, it's a bot.
+    if honeypot:
+        return True
+
+    # 2. Blocklist check
+    blocked_emails = [
+        'xrumer23Acatt@gmail.com',
+        'xrumer', # Any email containing xrumer
+    ]
+    for blocked in blocked_emails:
+        if blocked.lower() in email:
+            return True
+
+    # 3. Language check: Block Cyrillic (Russian/Bulgarian etc.) characters
+    # Since NanoStack is an Indian tech agency, Russian messages are almost certainly spam.
+    if re.search('[\u0400-\u04FF]', message) or re.search('[\u0400-\u04FF]', subject):
+        return True
+
+    # 4. Common spam patterns
+    spam_patterns = [
+        r'http://\S+\.ru', # Russian links
+        r'https://\S+\.ru',
+        r'order a bouquet', # From user's screenshot
+        r'заказать букет', # "Order a bouquet" in Russian
+    ]
+    for pattern in spam_patterns:
+        if re.search(pattern, message, re.IGNORECASE) or re.search(pattern, subject, re.IGNORECASE):
+            return True
+
+    return False
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 def contact(request):
     if request.method == 'POST':
+        if is_spam(request.POST):
+            # Silently "succeed" for bots so they don't know they were caught
+            messages.success(request, "Your message has been sent successfully!")
+            return redirect('contact')
+
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
+        ip = get_client_ip(request)
         
         ContactMessage.objects.create(
-            name=name, email=email, phone=phone, subject=subject, message=message
+            name=name, email=email, phone=phone, subject=subject, message=message, ip_address=ip
         )
         messages.success(request, "Your message has been sent successfully!")
         return redirect('contact')
@@ -104,18 +161,24 @@ def contact_api(request):
         else:
             data = request.POST
 
+        if is_spam(data):
+            # Silently return success to the bot
+            return JsonResponse({'message': 'Message sent successfully'}, status=201)
+
         name = data.get('name')
         email = data.get('email')
         phone = data.get('phone', '')
         subject = data.get('subject')
         message = data.get('message')
+        ip = get_client_ip(request)
 
         if not all([name, email, subject, message]):
             return JsonResponse({'error': 'Missing required fields'}, status=400)
 
         ContactMessage.objects.create(
-            name=name, email=email, phone=phone, subject=subject, message=message
+            name=name, email=email, phone=phone, subject=subject, message=message, ip_address=ip
         )
+
         
         # If standard form submit, verify if they want redirect or JSON
         if request.content_type != 'application/json' and not request.headers.get('x-requested-with') == 'XMLHttpRequest':
