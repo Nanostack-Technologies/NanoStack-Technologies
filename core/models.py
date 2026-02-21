@@ -8,6 +8,8 @@ class Project(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='projects/')
     tech_stack = models.CharField(max_length=200, help_text="Comma separated technologies")
+    duration = models.CharField(max_length=100, blank=True, help_text="e.g. 3 Months")
+    client_location = models.CharField(max_length=100, blank=True, help_text="e.g. USA, India")
     link = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -3,26 +3,77 @@
 
 {% block content %}
 <div class="container detail-container">
-    <div class="detail-card">
-        {% if project.image %}
-        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="detail-image">
-        {% endif %}
-        
-        <div class="detail-content">
-            <div class="detail-meta">{{ project.tech_stack }}</div>
-            <h1 class="detail-title">{{ project.title }}</h1>
-            
-            <div class="detail-text">
-                {{ project.description|safe }}
-            </div>
-            
-            <div class="detail-actions">
-                {% if project.link %}
-                <a href="{{ project.link }}" target="_blank" class="btn btn-primary">Visit Live Site <i class="fas fa-external-link-alt"></i></a>
+    <div class="project-detail-layout">
+        <div class="main-content">
+            <div class="detail-card">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="detail-image">
                 {% endif %}
                 
-                <a href="{% url 'projects' %}" class="btn btn-outline">Back to Projects</a>
+                <div class="detail-content">
+                    <h1 class="detail-title">{{ project.title }}</h1>
+                    
+                    <div class="detail-text">
+                        {{ project.description|safe }}
+                    </div>
+                    
+                    <div class="detail-actions">
+                         <a href="{% url 'projects' %}" class="btn btn-outline" style="margin-left: 0;">Back to Projects</a>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class="project-sidebar">
+            <div class="sidebar-widget">
+                <h4>Technologies Used</h4>
+                <div class="tech-tags">
+                    {% for tech in project.tech_stack.split %}
+                        <span class="tech-tag">{{ tech|cut:',' }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h4>Project Details</h4>
+                <div class="project-info-list">
+                    {% if project.duration %}
+                    <div class="project-info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <span>Duration</span>
+                            <p>{{ project.duration }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if project.client_location %}
+                    <div class="project-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <span>Client Location</span>
+                            <p>{{ project.client_location }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="project-info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <span>Delivered On</span>
+                            <p>{{ project.created_at|date:"F Y" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if project.link %}
+            <div class="sidebar-widget">
+                <a href="{{ project.link }}" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;">
+                    Visit Live Site <i class="fas fa-external-link-alt" style="margin-left: 10px;"></i>
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

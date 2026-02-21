@@ -3,7 +3,7 @@ from .models import Project, BlogPost, JobOpening, ContactMessage, Service
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'tech_stack', 'created_at')
+    list_display = ('title', 'tech_stack', 'client_location', 'duration', 'created_at')
     search_fields = ('title', 'tech_stack', 'description')
     list_filter = ('created_at',)
     prepopulated_fields = {'slug': ('title',)}
@@ -23,10 +23,10 @@ class JobOpeningAdmin(admin.ModelAdmin):
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'subject', 'created_at')
-    search_fields = ('name', 'email', 'subject', 'message')
+    list_display = ('name', 'email', 'subject', 'ip_address', 'created_at')
+    search_fields = ('name', 'email', 'subject', 'message', 'ip_address')
     list_filter = ('created_at',)
-    readonly_fields = ('name', 'email', 'phone', 'subject', 'message', 'created_at')
+    readonly_fields = ('name', 'email', 'phone', 'subject', 'message', 'ip_address', 'created_at')
 
     def has_add_permission(self, request):
         return False
