@@ -18,6 +18,14 @@ class Project(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
+    @property
+    def get_tech_stack_list(self):
+        if not self.tech_stack:
+            return []
+        if ',' in self.tech_stack:
+            return [t.strip() for t in self.tech_stack.split(',')]
+        return self.tech_stack.split()
+
     def __str__(self):
         return self.title
 
