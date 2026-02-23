@@ -46,14 +46,6 @@
                 </div>
                 {% endif %}
 
-                <div class="blog-share">
-                    <h4>Share this article</h4>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://wa.me/?text={{ post.title }}%20{{ request.build_absolute_uri }}" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
                 <div class="blog-actions">
                     <a href="{% url 'blog' %}" class="btn btn-outline">Back to Blog</a>
                 </div>
@@ -65,23 +57,27 @@
     {% if related_posts %}
     <section class="related-posts-section">
         <div class="container">
-            <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+            <div class="section-header" style="text-align: left; margin-bottom: 30px;">
                 <h2>Related Articles</h2>
-                <div style="width: 60px; height: 4px; background: var(--accent-color); margin-top: 10px;"></div>
+                <div class="accent-line"></div>
             </div>
-            <div class="projects-grid">
-                {% for rpost in related_posts %}
-                <div class="project-card">
-                    {% if rpost.image %}
-                    <img src="{{ rpost.image.url }}" alt="{{ rpost.title }}" class="project-img">
-                    {% endif %}
-                    <div class="project-body">
-                        <div class="project-meta">{{ rpost.created_at|date:"M d, Y" }}</div>
-                        <h3>{{ rpost.title }}</h3>
-                        <a href="{% url 'blog_detail' rpost.slug %}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="related-scroll-container">
+                <div class="related-posts-grid">
+                    {% for rpost in related_posts %}
+                    <div class="related-post-card">
+                        {% if rpost.image %}
+                        <div class="related-post-img-wrapper">
+                            <img src="{{ rpost.image.url }}" alt="{{ rpost.title }}">
+                        </div>
+                        {% endif %}
+                        <div class="related-post-body">
+                            <span class="related-post-date">{{ rpost.created_at|date:"M d, Y" }}</span>
+                            <h3>{{ rpost.title }}</h3>
+                            <a href="{% url 'blog_detail' rpost.slug %}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </section>
