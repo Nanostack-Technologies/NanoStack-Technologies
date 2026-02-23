@@ -285,18 +285,22 @@ ul {
 
 /* Blog Detail Enhancement Styles */
 .blog-container {
-    padding-top: 100px;
+    padding-top: 120px;
+    /* Increased to avoid navbar overlap */
+    background: #000;
 }
 
 .blog-header {
-    padding: 60px 0 40px;
+    padding: 40px 0;
     text-align: center;
 }
 
 .blog-meta-top {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
     margin-bottom: 20px;
     color: var(--accent-color);
     font-size: 0.9rem;
@@ -311,6 +315,8 @@ ul {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    color: #fff;
+    padding: 0 20px;
 }
 
 .blog-author-info {
@@ -318,18 +324,19 @@ ul {
     align-items: center;
     justify-content: center;
     gap: 15px;
+    margin-top: 20px;
 }
 
 .author-avatar {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background: var(--accent-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: white;
 }
 
@@ -340,32 +347,35 @@ ul {
 .author-name {
     display: block;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    color: #fff;
 }
 
 .author-role {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
 }
 
 .blog-featured-image-wrapper {
     margin-bottom: 50px;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .blog-featured-image {
     width: 100%;
     height: auto;
     display: block;
-    max-height: 600px;
+    max-height: 500px;
     object-fit: cover;
 }
 
 .blog-content-wrapper {
     display: flex;
     justify-content: center;
+    padding: 0 20px;
 }
 
 .blog-main-content {
@@ -374,71 +384,102 @@ ul {
 }
 
 .rich-text-content {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     line-height: 1.8;
-    color: #e5e5e5;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .rich-text-content p {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .rich-text-content h2 {
-    font-size: 2.2rem;
-    margin: 50px 0 20px;
-    color: white;
+    font-size: 2rem;
+    margin: 60px 0 25px;
+    color: #fff;
+    font-weight: 700;
 }
 
 .rich-text-content h3 {
-    font-size: 1.8rem;
-    margin: 40px 0 20px;
-    color: white;
+    font-size: 1.6rem;
+    margin: 50px 0 20px;
+    color: #fff;
+    font-weight: 700;
 }
 
 .rich-text-content ul,
 .rich-text-content ol {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     padding-left: 20px;
 }
 
 .rich-text-content li {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
-.rich-text-content blockquote {
-    border-left: 4px solid var(--accent-color);
-    padding: 20px 30px;
-    background: rgba(255, 255, 255, 0.03);
-    margin: 40px 0;
-    font-style: italic;
-    font-size: 1.3rem;
-    border-radius: 0 12px 12px 0;
+.rich-text-content strong {
+    color: #fff;
+    font-weight: 700;
 }
 
 .blog-tags {
-    margin: 50px 0;
+    margin: 60px 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .blog-tag {
     background: rgba(255, 255, 255, 0.05);
-    padding: 6px 15px;
-    border-radius: 30px;
-    font-size: 0.9rem;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 0.85rem;
     color: var(--text-muted);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.blog-tag:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .blog-share {
-    padding: 30px 0;
+    padding: 40px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    .blog-container {
+        padding-top: 100px;
+    }
+
+    .blog-header {
+        padding: 30px 0;
+    }
+
+    .blog-main-title {
+        font-size: 2.2rem;
+        padding: 0 15px;
+    }
+
+    .rich-text-content {
+        font-size: 1.1rem;
+    }
+
+    .blog-featured-image-wrapper {
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+
+    .blog-meta-top {
+        font-size: 0.8rem;
+    }
 }
 
 .blog-share h4 {
