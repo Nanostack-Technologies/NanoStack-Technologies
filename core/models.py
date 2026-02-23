@@ -35,7 +35,21 @@ class BlogPost(models.Model):
     content = models.TextField()
     image = models.ImageField(upload_to='blog/')
     author = models.CharField(max_length=100, default="Admin")
+    tags = models.CharField(max_length=200, blank=True, help_text="Comma separated tags")
     created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def reading_time(self):
+        # Average reading speed: 200 words per minute
+        word_count = len(self.content.split())
+        minutes = word_count / 200
+        return max(1, round(minutes))
+
+    @property
+    def tag_list(self):
+        if not self.tags:
+            return []
+        return [t.strip() for t in self.tags.split(',')]
 
     def save(self, *args, **kwargs):
         if not self.slug:

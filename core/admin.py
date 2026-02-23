@@ -10,8 +10,8 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'created_at')
-    search_fields = ('title', 'content')
+    list_display = ('title', 'author', 'tags', 'created_at')
+    search_fields = ('title', 'content', 'tags')
     list_filter = ('created_at', 'author')
     prepopulated_fields = {'slug': ('title',)}
 

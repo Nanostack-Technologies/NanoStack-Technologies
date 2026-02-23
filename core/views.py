@@ -49,11 +49,13 @@ def blog(request):
 
 def blog_detail(request, slug):
     post = get_object_or_404(BlogPost, slug=slug)
+    related_posts = BlogPost.objects.exclude(id=post.id).order_by('-created_at')[:3]
     return render(request, 'core/blog_detail.html', {
         'post': post,
+        'related_posts': related_posts,
         'seo_title': f"{post.title} | NanoStack Blog",
         'seo_description': post.content[:160],
-        'seo_keywords': f"{post.title}, Tech Article, {post.author}"
+        'seo_keywords': f"{post.title}, Tech Article, {post.author}, {post.tags}"
     })
 
 def career(request):

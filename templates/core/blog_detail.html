@@ -2,24 +2,89 @@
 {% load static %}
 
 {% block content %}
-<div class="container detail-container">
-    <div class="detail-card">
-        {% if post.image %}
-        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="detail-image">
-        {% endif %}
-        
-        <div class="detail-content">
-            <div class="detail-meta">{{ post.created_at|date:"M d, Y" }} | By {{ post.author }}</div>
-            <h1 class="detail-title">{{ post.title }}</h1>
-            
-            <div class="detail-text">
-                {{ post.content|safe }}
+<article class="blog-container">
+    <!-- Blog Header/Hero -->
+    <header class="blog-header">
+        <div class="container">
+            <div class="blog-meta-top">
+                <span class="blog-date"><i class="far fa-calendar-alt"></i> {{ post.created_at|date:"F d, Y" }}</span>
+                <span class="blog-reading-time"><i class="far fa-clock"></i> {{ post.reading_time }} min read</span>
             </div>
-            
-            <div class="detail-actions">
-                <a href="{% url 'blog' %}" class="btn btn-outline">Back to Blog</a>
+            <h1 class="blog-main-title">{{ post.title }}</h1>
+            <div class="blog-author-info">
+                <div class="author-avatar">{{ post.author|slice:":1" }}</div>
+                <div class="author-details">
+                    <span class="author-name">By {{ post.author }}</span>
+                    <span class="author-role">NanoStack Team</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Image -->
+    {% if post.image %}
+    <div class="container">
+        <div class="blog-featured-image-wrapper">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="blog-featured-image">
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Content Area -->
+    <div class="container">
+        <div class="blog-content-wrapper">
+            <div class="blog-main-content">
+                <div class="rich-text-content">
+                    {{ post.content|safe }}
+                </div>
+                
+                {% if post.tag_list %}
+                <div class="blog-tags">
+                    {% for tag in post.tag_list %}
+                    <span class="blog-tag">#{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="blog-share">
+                    <h4>Share this article</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/?text={{ post.title }}%20{{ request.build_absolute_uri }}" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="blog-actions">
+                    <a href="{% url 'blog' %}" class="btn btn-outline">Back to Blog</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Related Posts -->
+    {% if related_posts %}
+    <section class="related-posts-section">
+        <div class="container">
+            <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+                <h2>Related Articles</h2>
+                <div style="width: 60px; height: 4px; background: var(--accent-color); margin-top: 10px;"></div>
+            </div>
+            <div class="projects-grid">
+                {% for rpost in related_posts %}
+                <div class="project-card">
+                    {% if rpost.image %}
+                    <img src="{{ rpost.image.url }}" alt="{{ rpost.title }}" class="project-img">
+                    {% endif %}
+                    <div class="project-body">
+                        <div class="project-meta">{{ rpost.created_at|date:"M d, Y" }}</div>
+                        <h3>{{ rpost.title }}</h3>
+                        <a href="{% url 'blog_detail' rpost.slug %}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</article>
 {% endblock %}
