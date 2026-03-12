@@ -4,28 +4,32 @@
 {% block content %}
 
 <!-- About Hero -->
-<section class="hero" style="min-height: 60vh; background: var(--gradient-hero);">
-    <div class="hero-content">
-        <h1>About <span class="highlight">NanoStack</span></h1>
-        <p>We are the architects of the digital future. A team of passionate developers and designers dedicated to transforming ideas into powerful, scalable software solutions.</p>
+<section class="hero about-hero" style="min-height: 50vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, var(--secondary-color) 0%, var(--primary-color) 100%);">
+    <div class="container hero-content" style="text-align: center; max-width: 800px; padding-top: 40px;">
+        <h1 class="about-title">About <span class="highlight">NanoStack</span></h1>
+        <p class="about-subtitle">We are the architects of the digital future. A team of passionate developers and designers dedicated to transforming ideas into powerful, scalable software solutions.</p>
     </div>
 </section>
 
 <!-- Mission & Vision -->
-<section id="mission-vision">
+<section id="mission-vision" class="about-section">
     <div class="container">
-        <div class="contact-container" style="gap: 50px;">
-            <div class="contact-info">
-                <i class="fas fa-bullseye service-icon" style="font-size: 2.5rem; margin-bottom: 20px;"></i>
-                <h2 style="margin-bottom: 20px; font-size: 2rem;">Our Mission</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 40px;">
+            <div style="padding: 40px 30px; background: var(--white); border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04);">
+                <div style="width: 60px; height: 60px; border-radius: 16px; background: var(--secondary-color); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-bullseye" style="font-size: 1.8rem; color: var(--accent-color);"></i>
+                </div>
+                <h2 class="about-section-title">Our Mission</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
                     To empower businesses of all sizes with cutting-edge technology. We strive to demystify digital transformation, making sophisticated web and automation tools accessible, reliable, and effective for everyone. We believe in building software that not only solves problems but creates new opportunities for growth.
                 </p>
             </div>
-            <div class="contact-form" style="border: 1px solid #222;">
-                <i class="fas fa-eye service-icon" style="font-size: 2.5rem; margin-bottom: 20px;"></i>
-                <h2 style="margin-bottom: 20px; font-size: 2rem;">Our Vision</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+            <div style="padding: 40px 30px; background: var(--white); border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04);">
+                <div style="width: 60px; height: 60px; border-radius: 16px; background: var(--secondary-color); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-eye" style="font-size: 1.8rem; color: var(--accent-color);"></i>
+                </div>
+                <h2 class="about-section-title">Our Vision</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
                     To be the global benchmark for quality and innovation in the software industry. We envision a world where manual redundancy is eliminated through intelligent automation, allowing humans to focus on creativity and strategy. NanoStack aims to be at the forefront of this revolution.
                 </p>
             </div>
@@ -34,29 +38,29 @@
 </section>
 
 <!-- Core Values -->
-<section id="values" style="background: var(--secondary-color);">
+<section id="values" class="about-section" style="background: var(--secondary-color);">
     <div class="container">
-        <div class="section-header">
-            <h2>Our Core Values</h2>
-            <p>The principles that drive every line of code we write.</p>
+        <div class="section-header" style="max-width: 600px; margin: 0 auto 50px;">
+            <h2 class="about-primary-title">Our Core Values</h2>
+            <p style="font-size: 1.1rem;">The principles that drive every line of code we write and every decision we make as an agency.</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-lightbulb service-icon"></i>
-                <h3>Innovation First</h3>
-                <p>We don't just follow trends; we explore new boundaries. Using the latest tech stack like Next.js, Django, and AI to deliver future-proof solutions.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 30px;">
+            <div class="service-card" style="background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                <i class="fas fa-lightbulb service-icon" style="font-size: 2.5rem;"></i>
+                <h3 style="font-size: 1.4rem; color: var(--text-main);">Innovation First</h3>
+                <p style="color: var(--text-muted);">We don't just follow trends; we explore new boundaries. Using the latest tech stack like Next.js, Django, and AI to deliver future-proof solutions.</p>
             </div>
-            <div class="service-card">
-                <i class="fas fa-shield-alt service-icon"></i>
-                <h3>Uncompromised Quality</h3>
-                <p>Bug-free, secure, and highly performant code is our baseline. We adhere to strict testing and quality assurance protocols.</p>
+            <div class="service-card" style="background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                <i class="fas fa-shield-alt service-icon" style="font-size: 2.5rem;"></i>
+                <h3 style="font-size: 1.4rem; color: var(--text-main);">Uncompromised Quality</h3>
+                <p style="color: var(--text-muted);">Bug-free, secure, and highly performant code is our baseline. We adhere to strict testing and quality assurance protocols.</p>
             </div>
-            <div class="service-card">
-                <i class="fas fa-users service-icon"></i>
-                <h3>Client-Centric</h3>
-                <p>Your success is our success. We maintain transparent communication and work as an extension of your own team.</p>
+            <div class="service-card" style="background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                <i class="fas fa-users service-icon" style="font-size: 2.5rem;"></i>
+                <h3 style="font-size: 1.4rem; color: var(--text-main);">Client-Centric</h3>
+                <p style="color: var(--text-muted);">Your success is our success. We maintain transparent communication and work as an extension of your own team.</p>
             </div>
-             <div class="service-card">
+             <div class="service-card" style="background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
                 <i class="fas fa-bolt service-icon"></i>
                 <h3>Agility</h3>
                 <p>In a fast-paced digital world, speed matters. We deliver rapid prototypes and iterative updates to keep you ahead of the curve.</p>
@@ -66,40 +70,40 @@
 </section>
 
 <!-- Founders Section -->
-<section id="founders">
+<section id="founders" class="about-section" style="background: var(--primary-color);">
     <div class="container">
-        <div class="section-header">
-            <h2>Meet The Founders</h2>
-            <p>The minds behind the machinery.</p>
+        <div class="section-header" style="max-width: 600px; margin: 0 auto 50px;">
+            <h2 class="about-primary-title">Meet The Founders</h2>
+            <p style="font-size: 1.1rem;">The minds behind the machinery.</p>
         </div>
-        <div class="founders-grid" style="display: flex; justify-content: center; gap: 50px; flex-wrap: wrap;">
+        <div class="founders-grid" style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
             <!-- Founder 1 -->
-            <div class="founder-card service-card" style="max-width: 400px; padding: 40px;">
-                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); border-radius: 50%; margin: 0 auto 25px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; border: 2px solid var(--accent-color);">PM</div>
-                <h3 style="font-size: 1.8rem; margin-bottom: 5px;">Pavan Mehta</h3>
-                <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 20px;">Co-Founder & Tech Lead</p>
-                <p style="color: var(--text-muted); margin-bottom: 25px;">
+            <div class="founder-card" style="max-width: 450px; width: 100%; padding: 50px 40px; background: var(--white); border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); text-align: center; transition: var(--transition);">
+                <div style="width: 120px; height: 120px; background: var(--secondary-color); color: var(--accent-color); font-weight: 800; border-radius: 50%; margin: 0 auto 25px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">PM</div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 5px; color: var(--text-main); font-weight: 800; letter-spacing: -0.5px;">Pavan Mehta</h3>
+                <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 20px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Co-Founder & Tech Lead</p>
+                <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.8;">
                     A visionary technologist with deep expertise in Python, Backend Architecture, and Cloud Infrastructure. Pavan leads the technical strategy, ensuring every system we build is robust and scalable.
                 </p>
-                <div class="social-links" style="justify-content: center;">
-                     <a href="#"><i class="fab fa-linkedin"></i></a>
-                     <a href="#"><i class="fab fa-github"></i></a>
-                     <a href="mailto:pavan@nanostacktechnologies.com"><i class="fas fa-envelope"></i></a>
+                <div class="social-links" style="display: flex; justify-content: center; gap: 20px; font-size: 1.25rem;">
+                     <a href="https://www.linkedin.com/in/pavanmehta-developer/" style="color: var(--text-muted);"><i class="fab fa-linkedin"></i></a>
+                     <a href="#" style="color: var(--text-muted);"><i class="fab fa-github"></i></a>
+                     <a href="mailto:mehta26.tech@gmail.com" style="color: var(--text-muted);"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
             
              <!-- Founder 2 -->
-            <div class="founder-card service-card" style="max-width: 400px; padding: 40px;">
-                 <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); border-radius: 50%; margin: 0 auto 25px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; border: 2px solid var(--accent-color);">NT</div>
-                <h3 style="font-size: 1.8rem; margin-bottom: 5px;">Nakul Talsaniya</h3>
-                <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 20px;">Co-Founder & Lead Developer</p>
-                <p style="color: var(--text-muted); margin-bottom: 25px;">
-                    A coding wizard specializing in Full Stack Development and Automation. Nakul focuses on user experience, frontend innovations, and streamlining complex workflows with N8N and scripts.
+            <div class="founder-card" style="max-width: 450px; width: 100%; padding: 50px 40px; background: var(--white); border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); text-align: center; transition: var(--transition);">
+                 <div style="width: 120px; height: 120px; background: var(--secondary-color); color: var(--accent-color); font-weight: 800; border-radius: 50%; margin: 0 auto 25px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">NT</div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 5px; color: var(--text-main); font-weight: 800; letter-spacing: -0.5px;">Nakul Talsaniya</h3>
+                <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 20px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Co-Founder & Lead Dev</p>
+                <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.8;">
+                    A coding wizard specializing in Full Stack Development and Automation. Nakul focuses on user experience, frontend innovations, and streamlining complex workflows with scripts.
                 </p>
-                <div class="social-links" style="justify-content: center;">
-                     <a href="#"><i class="fab fa-linkedin"></i></a>
-                     <a href="#"><i class="fab fa-twitter"></i></a>
-                     <a href="mailto:nakul@nanostacktechnologies.com"><i class="fas fa-envelope"></i></a>
+                <div class="social-links" style="display: flex; justify-content: center; gap: 20px; font-size: 1.25rem;">
+                     <a href="https://www.linkedin.com/in/nakul-talsaniya-97069b2b9/" style="color: var(--text-muted);"><i class="fab fa-linkedin"></i></a>
+                     <a href="https://wa.me/917203045055" style="color: var(--text-muted);"><i class="fab fa-whatsapp"></i></a>
+                     <a href="mailto:nakultalsaniyaofficial@gmail.com" style="color: var(--text-muted);"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
@@ -135,10 +139,12 @@
 </section>
 
 <!-- CTA -->
-<section class="container" style="text-align: center; padding: 100px 20px;">
-    <h2 style="font-size: 3rem; margin-bottom: 20px;">Ready to Start Your Project?</h2>
-    <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 40px;">Let's collaborate to build something amazing. Our team is ready to turn your concept into reality.</p>
-    <a href="{% url 'contact' %}" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 50px;">Get in Touch</a>
+<section class="about-section" style="background: var(--secondary-color); border-top: 1px solid rgba(0,0,0,0.03);">
+    <div class="container" style="text-align: center;">
+        <h2 class="about-cta-title" style="color: var(--text-main);">Ready to Start Your Project?</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem;">Let's collaborate to build something amazing. Our team is ready to turn your concept into reality.</p>
+        <a href="{% url 'contact' %}" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px;">Get in Touch</a>
+    </div>
 </section>
 
 {% endblock %}
