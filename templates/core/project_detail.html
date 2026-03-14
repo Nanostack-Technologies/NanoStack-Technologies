@@ -2,7 +2,15 @@
 {% load static %}
 
 {% block content %}
-<div class="container detail-container">
+<!-- Project Hero -->
+<section class="hero-inner">
+    <div class="container" data-reveal>
+        <span class="project-meta">{{ project.category }}</span>
+        <h1>{{ project.title }}</h1>
+    </div>
+</section>
+
+<div class="container" style="padding-bottom: 80px;">
     <div class="project-detail-layout">
         <div class="main-content">
             <div class="detail-card">
@@ -11,7 +19,7 @@
                 {% endif %}
                 
                 <div class="detail-content">
-                    <h1 class="detail-title">{{ project.title }}</h1>
+                    <!-- Removed redundant title -->
                     
                     <div class="detail-text">
                         {{ project.description|safe }}

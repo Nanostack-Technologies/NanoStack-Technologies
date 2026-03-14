@@ -78,7 +78,10 @@
     }
     </script>
 </head>
-<body>
+<body class="dark-theme">
+    <div class="bg-shimmer"></div>
+    <div class="blob" style="top: 10%; left: -10%;"></div>
+    <div class="blob" style="bottom: 10%; right: -10%; animation-delay: -5s;"></div>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -212,7 +215,114 @@
             });
         }, observerOptions);
 
+        // Actually observe the counters
         counters.forEach(counter => observer.observe(counter));
+
+        // Reveal Animations
+        const revealItems = document.querySelectorAll('[data-reveal]');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealItems.forEach(item => revealObserver.observe(item));
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Testimonial Carousel One-by-One Logic
+        const carousel = document.getElementById('carouselWrapper');
+        if (carousel) {
+            const grid = carousel.querySelector('.testimonials-grid');
+            const cards = grid.querySelectorAll('.testimonial-card');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+            
+            let currentIndex = 0;
+
+            // Create dots
+            cards.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => scrollToCard(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.dot');
+
+            function updateActiveCard() {
+                cards.forEach((card, i) => {
+                    card.classList.toggle('active', i === currentIndex);
+                    dots[i].classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function scrollToCard(index) {
+                currentIndex = index;
+                const card = cards[index];
+                const cardLeft = card.offsetLeft;
+                const containerPadding = 50; // Match CSS padding
+                
+                // For a more robust calculation, we use the card's position relative to the grid
+                carousel.scrollTo({
+                    left: cardLeft - (carousel.offsetWidth - card.offsetWidth) / 2,
+                    behavior: 'smooth'
+                });
+                updateActiveCard();
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < cards.length - 1) {
+                    scrollToCard(currentIndex + 1);
+                } else {
+                    scrollToCard(0); // Loop back
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    scrollToCard(currentIndex - 1);
+                } else {
+                    scrollToCard(cards.length - 1); // Loop to end
+                }
+            });
+
+            // Update on scroll (native swiping)
+            let isScrolling;
+            carousel.addEventListener('scroll', () => {
+                window.clearTimeout(isScrolling);
+                isScrolling = setTimeout(() => {
+                    const cardWidth = cards[0].offsetWidth + 30;
+                    const newIndex = Math.round(carousel.scrollLeft / cardWidth);
+                    if (newIndex !== currentIndex) {
+                        currentIndex = newIndex;
+                        updateActiveCard();
+                    }
+                }, 100);
+            });
+
+            // Initial state
+            updateActiveCard();
+        }
     </script>
 </body>
 </html>

@@ -24,23 +24,23 @@ SECRET_KEY = 'django-insecure-f+vag1x-+6yg2)rq=)wbr=a9ig82(t=el=3jgvwwwbj0vy+gcv
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['nanostacktechnologies.com', 'nanoadmin.nanostacktechnologies.com', 'www.nanostacktechnologies.com', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://nanostacktechnologies.com', 'https://nanoadmin.nanostacktechnologies.com', 'https://www.nanostacktechnologies.com']
 
 # Security Settings
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = False
-# SESSION_COOKIE_SECURE = False
-# CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_HSTS_SECONDS = 31536000  # 1 year
-# SECURE_HSTS_SECONDS = 0
+# SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_SECONDS = 0
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 X_FRAME_OPTIONS = 'DENY'

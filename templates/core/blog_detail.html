@@ -3,14 +3,14 @@
 
 {% block content %}
 <article class="blog-container">
-    <!-- Blog Header/Hero -->
-    <header class="blog-header">
-        <div class="container">
+    <!-- Blog Hero -->
+    <section class="hero-inner">
+        <div class="container" data-reveal>
             <div class="blog-meta-top">
                 <span class="blog-date"><i class="far fa-calendar-alt"></i> {{ post.created_at|date:"F d, Y" }}</span>
                 <span class="blog-reading-time"><i class="far fa-clock"></i> {{ post.reading_time }} min read</span>
             </div>
-            <h1 class="blog-main-title">{{ post.title }}</h1>
+            <h1>{{ post.title }}</h1>
             <div class="blog-author-info">
                 <div class="author-avatar">{{ post.author|slice:":1" }}</div>
                 <div class="author-details">
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
     <!-- Featured Image -->
     {% if post.image %}
